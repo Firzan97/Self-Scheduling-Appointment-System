@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="warning" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -27,31 +23,36 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn
+      <!-- <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
         text
       >
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      </v-btn> -->
+
+      <v-btn target="_blank" text
+        ><router-link tag="li" to="/Register">
+          <v-icon>mdi-open-in-new</v-icon>
+          <span class="mr-2">Register</span>
+        </router-link></v-btn
+      >
+      <v-btn target="_blank" text
+        ><router-link tag="li" to="/Login">
+          <v-icon>mdi-open-in-new</v-icon>
+          <span class="mr-2">Login</span></router-link
+        ></v-btn
+      >
     </v-app-bar>
 
-    <v-main>
-      <HelloWorld/>
-    </v-main>
+    <v-main> <router-view></router-view> </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
+  name: "App",
 
   data: () => ({
     //
