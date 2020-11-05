@@ -1,10 +1,25 @@
 <template>
-<v-app>
-    <v-app-bar app color="warning" dark>
+  <div>
+    <v-app>
+      <v-app-bar app color="warning" dark>
         <div class="d-flex align-center">
-            <v-img alt="Vuetify Logo" class="shrink mr-2" contain src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png" transition="scale-transition" width="40" />
+          <v-img
+            alt="Vuetify Logo"
+            class="shrink mr-2"
+            contain
+            src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+            transition="scale-transition"
+            width="40"
+          />
 
-            <v-img alt="Vuetify Name" class="shrink mt-1 hidden-sm-and-down" contain min-width="100" src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png" width="100" />
+          <v-img
+            alt="Vuetify Name"
+            class="shrink mt-1 hidden-sm-and-down"
+            contain
+            min-width="100"
+            src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+            width="100"
+          />
         </div>
 
         <v-spacer></v-spacer>
@@ -19,31 +34,32 @@
       </v-btn> -->
 
         <v-btn target="_blank" text>
-            <router-link tag="li" to="/Register">
-                <v-icon>mdi-open-in-new</v-icon>
-                <span class="mr-2">Register</span>
-            </router-link>
+          <router-link tag="li" to="/Register">
+            <v-icon>mdi-open-in-new</v-icon>
+            <span class="mr-2">Register</span>
+          </router-link>
         </v-btn>
         <v-btn target="_blank" text>
-            <router-link tag="li" to="/Login">
-                <v-icon>mdi-open-in-new</v-icon>
-                <span class="mr-2">Login</span>
-            </router-link>
+          <router-link tag="li" to="/Login">
+            <v-icon>mdi-open-in-new</v-icon>
+            <span class="mr-2">Login</span>
+          </router-link>
         </v-btn>
-    </v-app-bar>
+      </v-app-bar>
 
-    <v-main>
+      <v-main>
         <router-view></router-view>
-    </v-main>
-</v-app>
+      </v-main>
+    </v-app>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "App",
+  name: "App",
 
-    data: () => ({
-        //
-    }),
+  data: () => ({
+    //
+  }),
 };
 </script>
