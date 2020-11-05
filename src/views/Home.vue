@@ -1,6 +1,8 @@
 <template>
-  <div></div>
-</template>
+<div>
+    <v-card-title></v-card-title>
+</div>
+</templ ate>
 
 <script>
 export default {};
