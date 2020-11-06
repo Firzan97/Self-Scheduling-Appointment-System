@@ -1,25 +1,29 @@
 <template>
   <div>
     <v-app>
-      <v-app-bar app color="warning" dark>
+      <v-app-bar app color="green" dark>
         <div class="d-flex align-center">
           <v-img
             alt="Vuetify Logo"
             class="shrink mr-2"
             contain
-            src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+            src="./assets/appointment-image.jpg"
             transition="scale-transition"
             width="40"
           />
-
           <v-img
             alt="Vuetify Name"
             class="shrink mt-1 hidden-sm-and-down"
             contain
             min-width="100"
-            src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+            src="assets/appointment-image.jpg"
             width="100"
           />
+          <v-btn target="_blank" text>
+            <router-link tag="span" to="/makeAppointment">
+              <span class="mr-2">Make an Appointment</span>
+            </router-link>
+          </v-btn>
         </div>
 
         <v-spacer></v-spacer>
@@ -34,17 +38,14 @@
       </v-btn> -->
 
         <v-btn target="_blank" text>
-          <router-link tag="li" to="/Register">
-            <v-icon>mdi-open-in-new</v-icon>
-            <span class="mr-2">Register</span>
-          </router-link>
-        </v-btn>
-        <v-btn target="_blank" text>
-          <router-link tag="li" to="/Login">
-            <v-icon>mdi-open-in-new</v-icon>
+          <router-link tag="span" to="/admin">
+            <!-- <v-icon>mdi-open-in-new</v-icon> -->
             <span class="mr-2">Login</span>
           </router-link>
         </v-btn>
+        <v-avatar>
+          <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+        </v-avatar>
       </v-app-bar>
 
       <v-main>
@@ -63,3 +64,9 @@ export default {
   }),
 };
 </script>
+
+<style>
+li {
+  text-decoration: none;
+}
+</style>

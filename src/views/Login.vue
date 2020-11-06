@@ -98,7 +98,7 @@ export default {
   }
 
   .overlay-left {
-    @include overlays(-20%);
+    @include overlays(-60%);
   }
 
   .overlay-right {

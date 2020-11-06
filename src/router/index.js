@@ -3,9 +3,16 @@ import VueRouter from "vue-router";
 import Register from "../views/Register.vue"
 import Login from "../views/Login.vue"
 import Home from "../views/Home.vue"
-
+import makeAppointment from "../views/MakeAppointment.vue"
+import selectDoctor from "../views/SelectDoctor.vue"
+import appointmentHistory from "../views/AppointmentHistory.vue"
+import appointmentStatus from "../views/AppointmentStatus.vue"
+import profile from "../views/Profile.vue"
+import admin from "../views/admin/home.vue"
+import staff from "../views/staff/home.vue"
 
 Vue.use(VueRouter);
+
 
 
 const routes = [{
@@ -29,6 +36,62 @@ const routes = [{
         component: Login,
         meta: {
             title: 'Login',
+
+        }
+    },
+    {
+        path: '/makeAppointment',
+        component: makeAppointment,
+        meta: {
+            title: 'Make Appointment',
+
+        }
+    },
+    {
+        path: '/selectDoctor',
+        component: selectDoctor,
+        meta: {
+            title: 'Select Doctor',
+
+        }
+    },
+    {
+        path: '/profile',
+        component: profile,
+        meta: {
+            title: 'Profile',
+
+        }
+    },
+    {
+        path: '/appointment/history',
+        component: appointmentHistory,
+        meta: {
+            title: 'Appointment History',
+
+        }
+    },
+    {
+        path: '/appointment/status',
+        component: appointmentStatus,
+        meta: {
+            title: 'Appointment Status',
+
+        }
+    },
+    {
+        path: '/admin',
+        component: admin,
+        meta: {
+            title: 'Admin Dashboard',
+
+        }
+    },
+    {
+        path: '/staff',
+        component: staff,
+        meta: {
+            title: "Staff Homepage",
 
         }
     }
