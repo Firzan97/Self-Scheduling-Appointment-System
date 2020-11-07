@@ -41,6 +41,85 @@
       <v-container fluid>
         <!-- If using vue-router -->
         <router-view> </router-view>
+        <v-row>
+          <v-col cols="2">
+            <v-menu
+              class="pa-2"
+              v-model="menu2"
+              :close-on-content-click="false"
+              :nudge-right="40"
+              transition="scale-transition"
+              offset-y
+              min-width="150px"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="date"
+                  label="Picker without buttons"
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="date"
+                @input="menu2 = false"
+              ></v-date-picker>
+            </v-menu>
+          </v-col>
+          <v-col cols="2">
+            <v-menu
+              class="pa-2"
+              v-model="menu2"
+              :close-on-content-click="false"
+              :nudge-right="40"
+              transition="scale-transition"
+              offset-y
+              min-width="150px"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="date"
+                  label="Picker without buttons"
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="date"
+                @input="menu2 = false"
+              ></v-date-picker>
+            </v-menu>
+          </v-col>
+          <v-col cols="2">
+            <v-select
+              class="pa-2"
+              :items="items"
+              label="Solo field"
+              solo
+            ></v-select>
+          </v-col>
+          <v-col cols="2">
+            <v-select
+              class="pa-2"
+              :items="items"
+              label="Solo field"
+              solo
+            ></v-select>
+          </v-col>
+          <v-col cols="2">
+            <v-select
+              class="pa-2"
+              :items="items"
+              label="Solo field"
+              solo
+            ></v-select
+          ></v-col>
+        </v-row>
+
         <v-card>
           <v-card-title>
             <v-text-field
@@ -71,11 +150,10 @@ export default {
   data: () => ({
     selectedItem: 1,
     items: [
-      { text: "Real-Time", icon: "mdi-clock" },
-      { text: "Audience", icon: "mdi-account" },
-      { text: "Conversions", icon: "mdi-flag" },
-      { text: "Conversions", icon: "mdi-flag" },
-      { text: "Conversions", icon: "mdi-flag" },
+      { text: "Appointments", icon: "mdi-clock" },
+      { text: "Services", icon: "mdi-account" },
+      { text: "Patients", icon: "mdi-flag" },
+      { text: "Staffs", icon: "mdi-flag" },
     ],
     search: "",
     headers: [

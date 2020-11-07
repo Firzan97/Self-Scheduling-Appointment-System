@@ -10,6 +10,7 @@ import appointmentStatus from "../views/AppointmentStatus.vue"
 import profile from "../views/Profile.vue"
 import admin from "../views/admin/home.vue"
 import staff from "../views/staff/home.vue"
+import userProfile from "../views/UserProfile.vue"
 
 Vue.use(VueRouter);
 
@@ -92,6 +93,14 @@ const routes = [{
         component: staff,
         meta: {
             title: "Staff Homepage",
+
+        }
+    },
+    {
+        path: '/userProfile',
+        component: userProfile,
+        meta: {
+            title: "User Profile",
 
         }
     }

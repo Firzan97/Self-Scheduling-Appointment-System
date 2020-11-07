@@ -43,9 +43,15 @@
             <span class="mr-2">Login</span>
           </router-link>
         </v-btn>
-        <v-avatar>
-          <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
-        </v-avatar>
+        <router-link tag="span" to="/userProfile">
+          <v-avatar>
+            <img
+              src="https://cdn.vuetifyjs.com/images/john.jpg"
+              alt="John"
+              href="/userProfile"
+            />
+          </v-avatar>
+        </router-link>
       </v-app-bar>
 
       <v-main>
