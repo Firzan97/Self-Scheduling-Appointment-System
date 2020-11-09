@@ -1,16 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Register from "../views/Register.vue"
-import Login from "../views/Login.vue"
+import Register from "../views/Register2.vue"
+import Login from "../views/Login2.vue"
 import Home from "../views/Home.vue"
 import makeAppointment from "../views/MakeAppointment.vue"
 import selectDoctor from "../views/SelectDoctor.vue"
 import appointmentHistory from "../views/AppointmentHistory.vue"
 import appointmentStatus from "../views/AppointmentStatus.vue"
-import profile from "../views/Profile.vue"
-import admin from "../views/admin/home.vue"
-import staff from "../views/staff/home.vue"
-import userProfile from "../views/UserProfile.vue"
+import admin from "../views/admin/Home.vue"
+import staff from "../views/staff/Home.vue"
+import Profile from "../views/UserProfile.vue"
 
 Vue.use(VueRouter);
 
@@ -18,6 +17,7 @@ Vue.use(VueRouter);
 
 const routes = [{
         path: '/',
+        name: "Home",
         component: Home,
         meta: {
             title: 'Home',
@@ -26,6 +26,7 @@ const routes = [{
     },
     {
         path: '/Register',
+        name: "Register",
         component: Register,
         meta: {
             title: 'Register',
@@ -34,6 +35,7 @@ const routes = [{
     },
     {
         path: '/Login',
+        name: "Login",
         component: Login,
         meta: {
             title: 'Login',
@@ -42,6 +44,7 @@ const routes = [{
     },
     {
         path: '/makeAppointment',
+        name: "MakeAppointment",
         component: makeAppointment,
         meta: {
             title: 'Make Appointment',
@@ -50,6 +53,7 @@ const routes = [{
     },
     {
         path: '/selectDoctor',
+        name: "SelectDoctor",
         component: selectDoctor,
         meta: {
             title: 'Select Doctor',
@@ -58,7 +62,8 @@ const routes = [{
     },
     {
         path: '/profile',
-        component: profile,
+        name: "Profile",
+        component: Profile,
         meta: {
             title: 'Profile',
 
@@ -93,14 +98,6 @@ const routes = [{
         component: staff,
         meta: {
             title: "Staff Homepage",
-
-        }
-    },
-    {
-        path: '/userProfile',
-        component: userProfile,
-        meta: {
-            title: "User Profile",
 
         }
     }

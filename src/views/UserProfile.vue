@@ -65,7 +65,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "UserProfile",
+  created() {
+    if (localStorage.getItem("access_token") === null) {
+      this.$router.push("/login");
+    }
+  },
+};
 </script>
 
 <style scoped>
