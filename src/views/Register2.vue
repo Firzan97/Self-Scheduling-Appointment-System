@@ -4,12 +4,38 @@
       <form>
         <v-text-field
           v-model="username"
-          :error-messages="nameErrors"
-          :counter="10"
+          :error-messages="usernameErrors"
           label="Username"
           required
           @input="$v.name.$touch()"
           @blur="$v.name.$touch()"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="fullname"
+          :error-messages="fullnameErrors"
+          label="Full Name"
+          required
+          @input="$v.fullname.$touch()"
+          @blur="$v.fullname.$touch()"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="phonenumber"
+          :error-messages="phonenumberErrors"
+          label="Phone Number"
+          required
+          @input="$v.phonenumber.$touch()"
+          @blur="$v.phonenumber.$touch()"
+        ></v-text-field>
+        <v-text-field
+          v-model="age"
+          :error-messages="ageErrors"
+          type="number"
+          label="Age"
+          required
+          @input="$v.age.$touch()"
+          @blur="$v.age.$touch()"
         ></v-text-field>
         <v-text-field
           v-model="email"
@@ -26,7 +52,7 @@
           name="input-10-2"
           label="Password"
           hint="At least 8 characters"
-          value="wqfasds"
+          value=""
           class="input-group--focused"
           @click:append="show2 = !show2"
         ></v-text-field>
@@ -37,7 +63,7 @@
           name="input-10-2"
           label="Confirmation Password"
           hint="At least 8 characters"
-          value="wqfasds"
+          value=""
           class="input-group--focused"
           @click:append="show2 = !show2"
         ></v-text-field>
@@ -57,14 +83,15 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, maxLength, email } from "vuelidate/lib/validators";
-const axios = require("axios");
-import router from "../router";
 
 export default {
   mixins: [validationMixin],
 
   validations: {
     name: { required, maxLength: maxLength(10) },
+    fullname: { required },
+    phonenumber: { required },
+    age: { required },
     email: { required, email },
     select: { required },
     checkbox: {
@@ -75,8 +102,11 @@ export default {
   },
 
   data: () => ({
-    username: "sasa",
-    email: "sasa",
+    username: "",
+    email: "",
+    fullname: "",
+    phonenumber: "",
+    age: "",
     select: null,
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
     checkbox: false,
@@ -105,7 +135,7 @@ export default {
       !this.$v.select.required && errors.push("Item is required");
       return errors;
     },
-    nameErrors() {
+    usernameErrors() {
       const errors = [];
       if (!this.$v.name.$dirty) return errors;
       !this.$v.name.maxLength &&
@@ -120,24 +150,38 @@ export default {
       !this.$v.email.required && errors.push("E-mail is required");
       return errors;
     },
+    fullnameErrors() {
+      const errors = [];
+      if (!this.$v.fullname.$dirty) return errors;
+      !this.$v.fullname.maxLength &&
+        errors.push("Name must be at most 10 characters long");
+      !this.$v.fullname.required && errors.push("Full Name is required.");
+      return errors;
+    },
+    phonenumberErrors() {
+      const errors = [];
+      if (!this.$v.phonenumber.$dirty) return errors;
+      !this.$v.phonenumber.required && errors.push("Phone Number is required.");
+      return errors;
+    },
+    ageErrors() {
+      const errors = [];
+      if (!this.$v.age.$dirty) return errors;
+      !this.$v.age.required && errors.push("Age is required.");
+      return errors;
+    },
   },
 
   methods: {
     submit() {
-      axios
-        .post("http://localhost:3000/login", {
-          username: this.username,
-          email: this.email,
-          password: this.password,
-        })
-        .then(function(response) {
-          if (response.status == 200) {
-            router.push({ name: "Profile" });
-          }
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      this.$store.dispatch("register", {
+        username: this.username,
+        email: this.email,
+        fullname: this.fullname,
+        phonenumber: this.phonenumber,
+        age: this.age,
+        password: this.password,
+      });
     },
     clear() {
       this.$v.$reset();

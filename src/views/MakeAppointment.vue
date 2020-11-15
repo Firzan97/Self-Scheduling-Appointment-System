@@ -7,32 +7,13 @@
       tile
     >
       <v-col cols="16" sm="6" md="3">
-        <v-text-field
-          v-model="name"
-          :error-messages="nameErrors"
-          :counter="10"
-          label="Name"
-          required
-          @input="$v.name.$touch()"
-          @blur="$v.name.$touch()"
-        ></v-text-field>
-        <v-text-field
-          v-model="email"
-          :error-messages="emailErrors"
-          label="IC Number"
-          required
-          @input="$v.email.$touch()"
-          @blur="$v.email.$touch()"
-        ></v-text-field>
-        <v-text-field
-          v-model="email"
-          :error-messages="emailErrors"
-          label="Telephones"
-          required
-          @input="$v.email.$touch()"
-          @blur="$v.email.$touch()"
-        ></v-text-field>
-        <v-select :items="this.services" label="Services" dense solo></v-select>
+        <v-select
+          v-model="this.selectedService"
+          :items="this.services"
+          label="Services"
+          dense
+          solo
+        ></v-select>
 
         <v-btn @click="clear">
           clear
@@ -68,11 +49,18 @@
 export default {
   data() {
     return {
+      selectedService: "",
       services: ["dentist", "radiology", "psychiatry"],
     };
   },
+  created() {
+    if (localStorage.getItem("access_token") === null) {
+      this.$router.push("/login");
+    }
+  },
   methods: {
     proceed() {
+      console.log(this.selectedService + "sasa");
       this.$router.push("/selectDoctor");
     },
   },

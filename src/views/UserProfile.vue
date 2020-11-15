@@ -29,33 +29,50 @@
     <v-card class="d-flex justify-center mb-6" :color="'white'" flat tile>
       <v-col cols="16" sm="6" md="3">
         <v-text-field
-          v-model="name"
-          :error-messages="nameErrors"
-          :counter="10"
-          label="Name"
+          v-model="username"
+          :error-messages="usernameErrors"
+          label="Username"
           required
           @input="$v.name.$touch()"
           @blur="$v.name.$touch()"
         ></v-text-field>
+
         <v-text-field
-          v-model="email"
-          :error-messages="emailErrors"
-          label="IC Number"
+          v-model="fullname"
+          :error-messages="fullnameErrors"
+          label="Full Name"
           required
-          @input="$v.email.$touch()"
-          @blur="$v.email.$touch()"
+          @input="$v.fullname.$touch()"
+          @blur="$v.fullname.$touch()"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="phonenumber"
+          :error-messages="phonenumberErrors"
+          label="Phone Number"
+          required
+          @input="$v.phonenumber.$touch()"
+          @blur="$v.phonenumber.$touch()"
+        ></v-text-field>
+        <v-text-field
+          v-model="age"
+          :error-messages="ageErrors"
+          type="number"
+          label="Age"
+          required
+          @input="$v.age.$touch()"
+          @blur="$v.age.$touch()"
         ></v-text-field>
         <v-text-field
           v-model="email"
           :error-messages="emailErrors"
-          label="Telephones"
+          label="E-mail"
           required
           @input="$v.email.$touch()"
           @blur="$v.email.$touch()"
         ></v-text-field>
-        <v-select :items="this.services" label="Services" dense solo></v-select>
         <v-card class="d-flex justify-end" :color="'white'" flat tile>
-          <v-btn @click="clear">
+          <v-btn>
             Confirm
           </v-btn>
         </v-card>
@@ -65,12 +82,48 @@
 </template>
 
 <script>
+import Axios from "axios";
+
 export default {
   name: "UserProfile",
+  data() {
+    return {
+      username: "",
+      fullname: "",
+      phonenumber: "",
+      age: "",
+      ic: "",
+      userid: "",
+      user: {},
+      email: "",
+      nameErrors: "",
+      emailErrors: "",
+    };
+  },
   created() {
-    if (localStorage.getItem("access_token") === null) {
+    console.log(this.$store.getters.checkToken);
+    this.currentUser();
+    if (this.$store.getters.checkToken === null) {
       this.$router.push("/login");
     }
+  },
+  methods: {
+    currentUser() {
+      this.userid = localStorage.getItem("userid");
+      Axios.get("http://localhost:3000/user/patient/" + this.userid)
+        .then((response) => {
+          this.user = response.data;
+          this.username = this.user.username;
+          this.fullname = this.user.fullname;
+          this.email = this.user.email;
+          this.age = this.user.age;
+          this.phonenumber = this.user.phonenumber;
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>

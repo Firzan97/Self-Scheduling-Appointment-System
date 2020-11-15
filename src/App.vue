@@ -1,88 +1,102 @@
 <template>
-<div>
+  <div>
     <v-app>
-        <v-app-bar app color="green" dark>
-            <div class="d-flex align-center">
-                <v-img alt="Vuetify Logo" class="shrink mr-2" contain src="./assets/appointment-image.jpg" transition="scale-transition" width="40" />
-                <v-img alt="Vuetify Name" class="shrink mt-1 hidden-sm-and-down" contain min-width="100" src="assets/appointment-image.jpg" width="100" />
-                <v-btn target="_blank" text>
-                    <router-link tag="span" to="/makeAppointment">
-                        <span class="mr-2">Make an Appointment</span>
-                    </router-link>
-                </v-btn>
-            </div>
-
-            <v-spacer></v-spacer>
-
-            <!-- <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn> -->
-<<<<<<< Updated upstream
-
-            <v-btn target="_blank" text>
-                <router-link tag="span" to="/Login">
-
-                    <span class="mr-2">Login</span>
-                </router-link>
-            </v-btn>
-
-            <router-link tag="span" to="/userProfile">
-                <v-avatar>
-                    <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" href="/userProfile" />
-                </v-avatar>
+      <v-app-bar app color="green" dark>
+        <div class="d-flex align-center">
+          <v-img
+            alt="Vuetify Logo"
+            class="shrink mr-2"
+            contain
+            src="./assets/appointment-image.jpg"
+            transition="scale-transition"
+            width="40"
+          />
+          <v-img
+            alt="Vuetify Name"
+            class="shrink mt-1 hidden-sm-and-down"
+            contain
+            min-width="100"
+            src="assets/appointment-image.jpg"
+            width="100"
+          />
+          <v-btn target="_blank" text>
+            <router-link tag="span" to="/">
+              <span class="mr-2">Home</span>
             </router-link>
-        </v-app-bar>
-=======
-        <v-btn target="_blank" text>
+          </v-btn>
+          <v-btn target="blank" text>
+            <router-link tag="span" to="/makeAppointment">
+              <span class="mr-2">Appointment</span>
+            </router-link>
+          </v-btn>
+        </div>
+
+        <v-spacer></v-spacer>
+        <v-btn @click="logout" target="_blank" text v-if="this.isLogged">
+          <!-- <v-icon>mdi-open-in-new</v-icon> -->
+          <span class="mr-2">Logout</span>
+        </v-btn>
+        <v-btn target="_blank" text v-else>
           <router-link tag="span" to="Login">
             <!-- <v-icon>mdi-open-in-new</v-icon> -->
-            <span class="mr-2" v-if="isLoggedIn">Login</span>
-            <span class="mr-2" v-else>Logout</span>
+            <span>Login</span>
           </router-link>
         </v-btn>
 
-        <router-link tag="span" to="/profile">
-          <v-avatar>
-            <img
+        <b-dropdown
+          size="lg"
+          variant="link"
+          toggle-class="text-decoration-none"
+          no-caret
+          v-if="this.isLogged"
+        >
+          <template #button-content>
+            <b-avatar
               src="https://cdn.vuetifyjs.com/images/john.jpg"
-              alt="John"
-              href="/userProfile"
-            />
-          </v-avatar>
-        </router-link>
-      </v-app-bar>
->>>>>>> Stashed changes
+            ></b-avatar>
+          </template>
 
-        <v-main>
-            <router-view></router-view>
-        </v-main>
+          <b-dropdown-item :to="{ name: 'Profile' }"> Profile</b-dropdown-item>
+
+          <b-dropdown-item :to="{ name: 'AppointmentStatus' }"
+            >Status</b-dropdown-item
+          >
+          <b-dropdown-item :to="{ name: 'AppointmentHistory' }"
+            >History</b-dropdown-item
+          >
+        </b-dropdown>
+      </v-app-bar>
+
+      <v-main>
+        <router-view></router-view>
+      </v-main>
     </v-app>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-<<<<<<< Updated upstream
-    name: "App",
-
-    data: () => ({
-        //
-    }),
-=======
   name: "App",
-  data: () => ({
-    user: "",
-  }),
 
+  data: () => ({
+    items: ["Profile", "Appointment Status", "History"],
+  }),
+  created() {
+    if (localStorage.getItem("role") == "Doctor") {
+      this.$router.push("/staff");
+    } else if (localStorage.getItem("role") == "Admin") {
+      this.$router.push("/admin");
+    }
+  },
   computed: {
-    isLoggedIn: function() {
-      console.log(this.$store.getters.status);
-      return this.$store.getters.status;
+    isLogged() {
+      return this.$store.getters.isLogged;
+    },
+  },
+
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
     },
   },
   // methods: {
@@ -92,12 +106,38 @@ export default {
   //     });
   //   },
   // },
->>>>>>> Stashed changes
 };
 </script>
 
 <style>
 li {
-    text-decoration: none;
+  text-decoration: none;
+}
+
+title {
+  position: absolute;
+  bottom: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 2em;
+  padding: 20px;
+}
+
+h1 {
+  position: absolute;
+  position: relative;
+  color: rgb(0, 0, 0);
+  font-size: 2em;
+  padding: 25 px;
+}
+
+main {
+  background-color: #ffffff;
+}
+
+p {
+  text-emphasis: none;
+  margin: 20px 0 30px;
+  text-size-adjust: 10px;
 }
 </style>

@@ -99,7 +99,6 @@ export default {
 
   methods: {
     login() {
-      console.log(this.email);
       this.$store.dispatch("login", {
         email: this.email,
         password: this.password,
@@ -112,6 +111,13 @@ export default {
       this.select = null;
       this.checkbox = false;
     },
+  },
+  created() {
+    console.log(this.$store.getters.checkToken);
+
+    if (this.$store.getters.checkToken !== null) {
+      this.$router.push("/profile");
+    }
   },
 };
 </script>
