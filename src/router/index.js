@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Register from "../views/Register.vue"
 import Login from "../views/Login.vue"
-import Home from "../views/Home.vue"
+import Home from "../views/home.vue"
 import makeAppointment from "../views/MakeAppointment.vue"
 import selectDoctor from "../views/SelectDoctor.vue"
 import appointmentHistory from "../views/AppointmentHistory.vue"
@@ -11,6 +11,7 @@ import profile from "../views/Profile.vue"
 import admin from "../views/admin/home.vue"
 import staff from "../views/staff/home.vue"
 import userProfile from "../views/UserProfile.vue"
+
 
 Vue.use(VueRouter);
 
