@@ -19,32 +19,34 @@
           </div>
         </div>
       </div>
-      <form class="sign-up" action="#">
+      <form class="sign-up">
         <h2>Sign Up</h2>
         <div>Use your email for registration</div>
-        <input type="text" placeholder=" Username" />
+        <input v-model="age" type="email" placeholder="Email" />
 
-        <input type="numbers" placeholder=" Fullname" />
-        <input type="text" placeholder="Phone Number" />
-        <input type="text" placeholder="Age" />
-        <input type="email" placeholder="Email" />
+        <input v-model="fullname" type="text" placeholder=" Full Name" />
 
-        <input type="password" placeholder="Password" />
+        <input v-model="username" type="text" placeholder=" Username" />
 
+        <input v-model="phonenumber" type="text" placeholder="Phone Number" />
+
+        <input v-model="age" type="number" placeholder="Age" />
+
+        <input v-model="password" type="password" placeholder="Password" />
         <div><br /></div>
-        <button>
-          <router-link tag="span" to="/makeAppointment">
-            <span class="mr-2"> Register</span>
-          </router-link>
-        </button>
+        <v-btn class="mr-4" @click="submit">
+          REGISTER
+        </v-btn>
       </form>
-      <form class="sign-in" action="#">
+      <form class="sign-in" @submit.prevent="login">
         <h2>Sign In</h2>
         <div>Use your account</div>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <input v-model="email" type="email" placeholder="Email" />
+        <input v-model="password" type="password" placeholder="Password" />
         <a href="#">Forgot your password?</a>
-        <button>Login</button>
+        <v-btn class="mr-4" @click="login">
+          LOGIN
+        </v-btn>
       </form>
     </div>
   </article>
@@ -55,7 +57,32 @@ export default {
   data: () => {
     return {
       signUp: false,
+      username: "",
+      email: "",
+      fullname: "",
+      phonenumber: "",
+      age: "",
+      password: "Password",
     };
+  },
+  methods: {
+    submit() {
+      this.$store.dispatch("register", {
+        username: this.username,
+        email: this.email,
+        fullname: this.fullname,
+        phonenumber: this.phonenumber,
+        age: this.age,
+        password: this.password,
+      });
+    },
+    clear() {
+      this.$v.$reset();
+      this.name = "";
+      this.email = "";
+      this.select = null;
+      this.checkbox = false;
+    },
   },
 };
 </script>
@@ -135,7 +162,7 @@ a {
 }
 
 button {
-  border-radius: 10px;
+  border-radius: 20px;
   border: 1px solid #009345;
   background-color: #009345;
   color: #fff;
@@ -168,9 +195,8 @@ form {
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  padding: 30px 2px;
   width: calc(50% - 90px);
-  height: calc(100% - 80px);
+  height: calc(100% - 60px);
   text-align: center;
   background: linear-gradient(to bottom, #efefef, #ccc);
   transition: all 0.5s ease-in-out;
@@ -182,8 +208,8 @@ form {
   input {
     background-color: #eee;
     border: none;
-    padding: 10px 15px;
-    margin: 6px 0;
+    padding: 19px 15px;
+    height: 20px;
     width: calc(100% - 30px);
     border-radius: 15px;
     border-bottom: 1px solid #ddd;
@@ -204,7 +230,6 @@ form {
 }
 
 .sign-up {
-  margin-top: 25px;
   left: 0;
   z-index: 1;
   opacity: 0;
@@ -254,8 +279,5 @@ form {
     opacity: 1;
     z-index: 10;
   }
-}
-.sign-up input {
-  padding: 18px;
 }
 </style>

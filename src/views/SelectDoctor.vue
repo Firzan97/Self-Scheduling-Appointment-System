@@ -244,6 +244,7 @@ export default {
           console.log("Doctor Id" + this.doctor.id);
           console.log("Patient ID" + this.userid);
           console.log("Service Id" + this.selectedService.id);
+          this.$router.push("/Appointment/Status");
 
           console.log(response);
           // this.$router.push("/Appointment/Status");

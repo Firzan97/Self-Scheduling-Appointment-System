@@ -112,6 +112,6 @@ p {
 }
 
 .carousel {
-  margin-top: -70px !important;
+  margin-top: 50px;
 }
 </style>

@@ -15,7 +15,7 @@
           name="input-10-2"
           label="Not visible"
           hint="At least 8 characters"
-          value="wqfasds"
+          v-model="password"
           class="input-group--focused"
           @click:append="show3 = !show3"
         ></v-text-field>
@@ -48,7 +48,7 @@ export default {
     show2: true,
     show3: false,
     show4: false,
-    password: "Password",
+    password: "",
     rules: {
       required: (value) => !!value || "Required.",
       min: (v) => v.length >= 8 || "Min 8 characters",
@@ -99,6 +99,7 @@ export default {
 
   methods: {
     login() {
+      console.log(this.email + "dannnn" + this.password);
       this.$store.dispatch("login", {
         email: this.email,
         password: this.password,

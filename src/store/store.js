@@ -108,6 +108,7 @@ export default new Vuex.Store({
     },
     actions: {
         login(context, Credential) {
+            console.log("sasasas")
             Axios.post("http://localhost:3000/login", {
                     email: Credential.email,
                     password: Credential.password
@@ -144,12 +145,12 @@ export default new Vuex.Store({
             context.commit('retrieveToken', null)
 
             context.commit('loggedStatus', false)
-            router.push('/login')
+            router.push('/')
 
         },
         register(context, Credential) {
             Axios
-                .post("http://localhost:3000/register", {
+                .post("http://localhost:3000/Register", {
                     username: Credential.username,
                     email: Credential.email,
                     phonenumber: Credential.phonenumber,

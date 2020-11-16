@@ -66,6 +66,9 @@ export default {
   methods: {
     getAppointment() {
       this.userid = localStorage.getItem("userid");
+      console.log(
+        "http://localhost:3000/User/Patient/" + this.userid + "/Appointment"
+      );
       axios
         .get(
           "http://localhost:3000/User/Patient/" + this.userid + "/Appointment"
@@ -84,7 +87,7 @@ export default {
               }
             }
             if (
-              response.data[x].regDate.slice(0, 10) >
+              response.data[x].regDate.slice(0, 10) >=
               new Date().toJSON().slice(0, 10)
             ) {
               data = {

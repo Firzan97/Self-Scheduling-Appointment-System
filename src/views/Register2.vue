@@ -53,6 +53,7 @@
           label="Password"
           hint="At least 8 characters"
           value=""
+          v-model="password"
           class="input-group--focused"
           @click:append="show2 = !show2"
         ></v-text-field>
@@ -64,6 +65,7 @@
           label="Confirmation Password"
           hint="At least 8 characters"
           value=""
+          v-model="password2"
           class="input-group--focused"
           @click:append="show2 = !show2"
         ></v-text-field>
@@ -114,7 +116,9 @@ export default {
     show2: true,
     show3: false,
     show4: false,
-    password: "Password",
+    password: "",
+    password2: "",
+
     rules: {
       required: (value) => !!value || "Required.",
       min: (v) => v.length >= 8 || "Min 8 characters",
@@ -174,6 +178,9 @@ export default {
 
   methods: {
     submit() {
+      console.log(
+        "this is email " + this.email + "andd this is paswrd " + this.password
+      );
       this.$store.dispatch("register", {
         username: this.username,
         email: this.email,
@@ -183,12 +190,11 @@ export default {
         password: this.password,
       });
     },
-    clear() {
-      this.$v.$reset();
-      this.name = "";
-      this.email = "";
-      this.select = null;
-      this.checkbox = false;
+    login() {
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password,
+      });
     },
     // register() {
     //   axios

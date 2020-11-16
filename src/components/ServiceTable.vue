@@ -122,14 +122,45 @@
                     Update
                   </v-btn>
 
-                  <v-btn
-                    @click="deleteService(item.id)"
-                    depressed
-                    color="error"
-                    class="caption"
-                  >
-                    Delete
-                  </v-btn>
+                  <v-dialog v-model="dialog" persistent max-width="290">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        dark
+                        v-bind="attrs"
+                        v-on="on"
+                        depressed
+                        color="error"
+                        class="caption  mr-4"
+                      >
+                        Delete
+                      </v-btn>
+                    </template>
+                    <v-card>
+                      <v-card-title class="headline">
+                        Aye you sure to delete this patient?
+                      </v-card-title>
+                      <v-card-text>
+                        Please be remind that you will delete this patient!
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          color="green darken-1"
+                          text
+                          @click="dialog = false"
+                        >
+                          Cancel
+                        </v-btn>
+                        <v-btn
+                          color="green darken-1"
+                          text
+                          @click="deleteService(item.id)"
+                        >
+                          Confirm
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
                 </td>
               </tr>
             </tbody>
@@ -147,14 +178,38 @@
       >
         Back
       </v-btn>
-      <v-btn
-        depressed
-        color="primary"
-        class=" caption mr-4"
-        @click="updateService()"
-      >
-        Confirm
-      </v-btn>
+
+      <v-dialog v-model="dialog" persistent max-width="290">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            dark
+            v-bind="attrs"
+            v-on="on"
+            depressed
+            color="error"
+            class="caption  mr-4"
+          >
+            Confirm
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title class="headline">
+            Aye you sure to update this service?
+          </v-card-title>
+          <v-card-text>
+            Please be remind that you will overwrite existing data!
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" text @click="dialog = false">
+              Cancel
+            </v-btn>
+            <v-btn color="green darken-1" text @click="updateService()">
+              Confirm
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
   </div>
 </template>
@@ -206,6 +261,7 @@ export default {
       axios
         .delete("http://localhost:3000/Service/" + id)
         .then((response) => {
+          this.dialog = false;
           console.log(response);
           this.getService();
         })
@@ -222,6 +278,8 @@ export default {
           cost: this.$store.getters.serviceCost,
         })
         .then((response) => {
+          this.dialog = false;
+
           console.log(response);
           this.getService();
           this.changeMenu(1, this.serviceId, this.serviceData);
@@ -232,6 +290,7 @@ export default {
     },
   },
   data: () => ({
+    dialog: false,
     serviceData: {},
     serviceId: 0,
     menu: 1,

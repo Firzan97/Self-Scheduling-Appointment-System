@@ -129,14 +129,46 @@
                   >
                     Update
                   </v-btn>
-                  <v-btn
-                    depressed
-                    color="error"
-                    class="caption  mr-4"
-                    @click="deleteDoctor(item.userid)"
-                  >
-                    Delete
-                  </v-btn>
+                  <v-dialog v-model="dialog" persistent max-width="290">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        dark
+                        v-bind="attrs"
+                        v-on="on"
+                        depressed
+                        color="error"
+                        class="caption  mr-4"
+                      >
+                        Delete
+                      </v-btn>
+                    </template>
+                    <v-card>
+                      <v-card-title class="headline">
+                        Aye you sure to delete this doctor?
+                      </v-card-title>
+                      <v-card-text>
+                        Please be remind that you cannot recover the data after
+                        delete it!
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          color="green darken-1"
+                          text
+                          @click="dialog = false"
+                        >
+                          Cancel
+                        </v-btn>
+                        <v-btn
+                          color="green darken-1"
+                          text
+                          @click="deleteDoctor(item.userid)"
+                        >
+                          Confirm
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
                 </td>
               </tr>
             </tbody>
@@ -154,14 +186,37 @@
       >
         Back
       </v-btn>
-      <v-btn
-        depressed
-        color="primary"
-        class=" caption mr-4"
-        @click="updateDoctor()"
-      >
-        Confirm
-      </v-btn>
+      <v-dialog v-model="dialog" persistent max-width="290">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            dark
+            v-bind="attrs"
+            v-on="on"
+            depressed
+            color="error"
+            class="caption  mr-4"
+          >
+            Update
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title class="headline">
+            Aye you sure to update this doctor?
+          </v-card-title>
+          <v-card-text>
+            Please be remind that you will overwrite existing data!
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" text @click="dialog = false">
+              Cancel
+            </v-btn>
+            <v-btn color="green darken-1" text @click="updateDoctor()">
+              Confirm
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
   </div>
 </template>
@@ -169,8 +224,10 @@
 <script>
 import axios from "axios";
 import UpdateDoctor from "../components/UpdateDoctor";
+
 export default {
   name: "DoctorTable",
+
   components: {
     UpdateDoctor,
   },
@@ -234,6 +291,7 @@ export default {
           password: this.$store.getters.doctorData.password,
         })
         .then((response) => {
+          this.dialog = false;
           console.log(response);
           this.getDoctor();
           this.changeMenu(1, this.doctorId);
@@ -244,6 +302,7 @@ export default {
     },
   },
   data: () => ({
+    dialog: false,
     menu: 1,
     doctorId: 0,
     doctor: [],
