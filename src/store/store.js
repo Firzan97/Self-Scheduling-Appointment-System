@@ -122,8 +122,8 @@ export default new Vuex.Store({
                     context.commit('loggedStatus', true)
 
                     localStorage.setItem('access_token', token)
-                    context.commit('retrieveToken', token)
-                    if (role == "Admin") {
+                    if (role == "Admin") {                    context.commit('retrieveToken', token)
+
                         router.push('/admin')
 
                     } else if (role == "Doctor") {

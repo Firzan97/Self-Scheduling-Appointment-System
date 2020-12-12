@@ -237,7 +237,7 @@ export default {
     },
     getService() {
       axios
-        .get("http://localhost:3000/Service")
+        .get("https://protected-ravine-72171.herokuapp.com/Service")
         .then((response) => {
           console.log(response);
           let data = {};
@@ -259,7 +259,7 @@ export default {
     },
     deleteService(id) {
       axios
-        .delete("http://localhost:3000/Service/" + id)
+        .delete("https://protected-ravine-72171.herokuapp.com/Service/" + id)
         .then((response) => {
           this.dialog = false;
           console.log(response);
@@ -273,10 +273,14 @@ export default {
       console.log(this.$store.getters.serviceType);
       console.log(this.$store.getters.serviceCost);
       axios
-        .patch("http://localhost:3000/Service/" + this.serviceId, {
-          type: this.$store.getters.serviceType,
-          cost: this.$store.getters.serviceCost,
-        })
+        .patch(
+          "https://protected-ravine-72171.herokuapp.com/Service/" +
+            this.serviceId,
+          {
+            type: this.$store.getters.serviceType,
+            cost: this.$store.getters.serviceCost,
+          }
+        )
         .then((response) => {
           this.dialog = false;
 

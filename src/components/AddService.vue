@@ -75,7 +75,7 @@ export default {
     },
     addService() {
       axios
-        .post("http://localhost:3000/Service", {
+        .post("https://protected-ravine-72171.herokuapp.com/Service", {
           type: this.type,
           cost: this.cost,
         })

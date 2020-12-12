@@ -174,7 +174,8 @@ export default {
   created() {
     this.getService(),
       this.getDoctors(
-        "http://localhost:3000/Doctor/" + this.selectedService.service
+        "https://protected-ravine-72171.herokuapp.com/Doctor/" +
+          this.selectedService.service
       );
     if (this.$store.getters.checkToken === null) {
       this.$router.push("/login");
@@ -189,7 +190,7 @@ export default {
   methods: {
     getService() {
       axios
-        .get("http://localhost:3000/Service")
+        .get("https://protected-ravine-72171.herokuapp.com/Service")
         .then((response) => {
           console.log(response);
           let data = {};
@@ -208,10 +209,16 @@ export default {
         });
     },
     getDoctors() {
-      console.log("http://localhost:3000/Doctor/" + this.selectedService.type);
+      console.log(
+        "https://protected-ravine-72171.herokuapp.com/Doctor/" +
+          this.selectedService.type
+      );
       this.doctors = [];
       axios
-        .get("http://localhost:3000/Doctor/" + this.selectedService.type)
+        .get(
+          "https://protected-ravine-72171.herokuapp.com/Doctor/" +
+            this.selectedService.type
+        )
         .then((response) => {
           for (var i = 0; i < response.data.length; i++) {
             console.log(response.data[i].username);
@@ -232,7 +239,7 @@ export default {
       this.userid = localStorage.getItem("userid");
       console.log("ni idddddddddd" + this.userid);
       axios
-        .post("http://localhost:3000/Appointment", {
+        .post("https://protected-ravine-72171.herokuapp.com/Appointment", {
           regTime: this.selectedTime.id,
           regDate: this.date,
           status: "Pending",

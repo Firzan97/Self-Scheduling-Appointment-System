@@ -81,7 +81,7 @@ export default {
     },
     addPatient() {
       axios
-        .post("http://localhost:3000/User/Doctor", {
+        .post("https://protected-ravine-72171.herokuapp.com/User/Doctor", {
           username: this.username,
           email: this.email,
           role: "Doctor",

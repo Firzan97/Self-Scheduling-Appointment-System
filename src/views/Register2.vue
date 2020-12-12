@@ -4,7 +4,6 @@
       <form>
         <v-text-field
           v-model="username"
-          :error-messages="usernameErrors"
           label="Username"
           required
           @input="$v.name.$touch()"
@@ -13,7 +12,6 @@
 
         <v-text-field
           v-model="fullname"
-          :error-messages="fullnameErrors"
           label="Full Name"
           required
           @input="$v.fullname.$touch()"
@@ -57,7 +55,7 @@
           class="input-group--focused"
           @click:append="show2 = !show2"
         ></v-text-field>
-        <v-text-field
+        <!-- <v-text-field
           :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[rules.required, rules.min]"
           :type="show2 ? 'text' : 'password'"
@@ -68,7 +66,7 @@
           v-model="password2"
           class="input-group--focused"
           @click:append="show2 = !show2"
-        ></v-text-field>
+        ></v-text-field> -->
         <v-row class="d-flex justify-center">
           <v-btn class="mr-4" @click="submit">
             REGISTER

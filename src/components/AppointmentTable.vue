@@ -111,9 +111,6 @@
                 <th class="text-left">
                   Status
                 </th>
-                <th class="text-left">
-                  Action
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -217,7 +214,9 @@ export default {
     },
     deleteAppointment(id) {
       axios
-        .delete("http://localhost:3000/Appointment/" + id)
+        .delete(
+          "https://protected-ravine-72171.herokuapp.com/Appointment/" + id
+        )
         .then((response) => {
           console.log(response);
           this.getAppointment();
@@ -229,7 +228,7 @@ export default {
     getAppointment() {
       this.appointment = [];
       axios
-        .get("http://localhost:3000/Appointment")
+        .get("https://protected-ravine-72171.herokuapp.com/Appointment")
         .then((response) => {
           let data = {};
           for (var x = 0; x < response.data.length; x++) {
@@ -262,7 +261,7 @@ export default {
     },
     getDoctor() {
       axios
-        .get("http://localhost:3000/User/Doctor/")
+        .get("https://protected-ravine-72171.herokuapp.com/User/Doctor/")
         .then((response) => {
           let data = {};
           for (var x = 0; x < response.data.length; x++) {
@@ -279,7 +278,7 @@ export default {
     },
     getService() {
       axios
-        .get("http://localhost:3000/Service")
+        .get("https://protected-ravine-72171.herokuapp.com/Service")
         .then((response) => {
           let data = {};
           if (response.data.length > 0) {
@@ -298,7 +297,7 @@ export default {
     },
     getPatient() {
       axios
-        .get("http://localhost:3000/Patient/")
+        .get("https://protected-ravine-72171.herokuapp.com/Patient/")
         .then((response) => {
           let data = {};
           this.patient = [];

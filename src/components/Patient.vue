@@ -43,7 +43,7 @@ export default {
     },
     getAppointment() {
       axios
-        .get("http://localhost:3000/Appointment")
+        .get("https://protected-ravine-72171.herokuapp.com/Appointment")
         .then((response) => {
           let data = {};
           for (var x = 0; x < response.data.length; x++) {
@@ -80,7 +80,7 @@ export default {
     },
     getDoctor() {
       axios
-        .get("http://localhost:3000/User/Docotr/")
+        .get("https://protected-ravine-72171.herokuapp.com/User/Docotr/")
         .then((response) => {
           let data = {};
           for (var x = 0; x < response.data.length; x++) {
@@ -97,7 +97,7 @@ export default {
     },
     getService() {
       axios
-        .get("http://localhost:3000/Service")
+        .get("https://protected-ravine-72171.herokuapp.com/Service")
         .then((response) => {
           let data = {};
           for (var x = 0; x < response.data.length; x++) {

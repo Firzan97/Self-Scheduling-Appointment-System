@@ -27,7 +27,7 @@
       </v-card>
     </v-navigation-drawer>
 
-    <v-app-bar color="green" app>
+    <v-app-bar color="blue" app>
       <!-- -->
       <span class="mr-2">Home</span>
       <v-spacer></v-spacer>
@@ -140,7 +140,7 @@ export default {
     },
     getAppointment() {
       axios
-        .get("http://localhost:3000/appointment")
+        .get("https://protected-ravine-72171.herokuapp.com/appointment")
         .then((response) => {
           let data = {};
           for (var x = 0; x < response.data.length; x++) {
@@ -177,7 +177,7 @@ export default {
     },
     getDoctor() {
       axios
-        .get("http://localhost:3000/user/staff/")
+        .get("https://protected-ravine-72171.herokuapp.com/user/staff/")
         .then((response) => {
           let data = {};
           for (var x = 0; x < response.data.length; x++) {
@@ -194,7 +194,7 @@ export default {
     },
     getService() {
       axios
-        .get("http://localhost:3000/service")
+        .get("https://protected-ravine-72171.herokuapp.com/service")
         .then((response) => {
           let data = {};
           for (var x = 0; x < response.data.length; x++) {
@@ -211,7 +211,7 @@ export default {
     },
     getPatient() {
       axios
-        .get("http://localhost:3000/user/patient/")
+        .get("https://protected-ravine-72171.herokuapp.com/user/patient/")
         .then((response) => {
           let data = {};
           for (var x = 0; x < response.data.length; x++) {

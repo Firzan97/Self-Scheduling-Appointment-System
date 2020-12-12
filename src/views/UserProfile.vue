@@ -110,7 +110,10 @@ export default {
   methods: {
     currentUser() {
       this.userid = localStorage.getItem("userid");
-      Axios.get("http://localhost:3000/user/patient/" + this.userid)
+      Axios.get(
+        "https://protected-ravine-72171.herokuapp.com/user/patient/" +
+          this.userid
+      )
         .then((response) => {
           this.user = response.data;
           this.username = this.user.username;

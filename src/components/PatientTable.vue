@@ -5,90 +5,6 @@
         <!-- If using vue-router -->
         <h1>Patient</h1>
 
-        <v-row>
-          <v-col cols="3">
-            <v-menu
-              class="pa-2"
-              v-model="menu2"
-              :close-on-content-click="false"
-              :nudge-right="40"
-              transition="scale-transition"
-              offset-y
-              min-width="150px"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  v-model="date"
-                  label="From"
-                  prepend-icon="mdi-calendar"
-                  readonly
-                  v-bind="attrs"
-                  v-on="on"
-                ></v-text-field>
-              </template>
-              <v-date-picker
-                v-model="date"
-                @input="menu2 = false"
-              ></v-date-picker>
-            </v-menu>
-          </v-col>
-          <v-col cols="2">
-            <v-menu
-              class="pa-2"
-              v-model="menu2"
-              :close-on-content-click="false"
-              :nudge-right="40"
-              transition="scale-transition"
-              offset-y
-              min-width="150px"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  v-model="date"
-                  label="To"
-                  prepend-icon="mdi-calendar"
-                  readonly
-                  v-bind="attrs"
-                  v-on="on"
-                ></v-text-field>
-              </template>
-              <v-date-picker
-                v-model="date"
-                @input="menu2 = false"
-              ></v-date-picker>
-            </v-menu>
-          </v-col>
-          <v-col cols="2">
-            <v-select
-              class="pa-2"
-              :items="doctor"
-              item-text="fullname"
-              item-value="id"
-              label="Doctor"
-              solo
-            ></v-select>
-          </v-col>
-          <v-col cols="2">
-            <v-select
-              class="pa-2"
-              :items="service"
-              item-text="type"
-              item-value="id"
-              label="Services"
-              solo
-            ></v-select>
-          </v-col>
-          <v-col cols="2">
-            <v-select
-              class="pa-2"
-              :items="status"
-              label="Status"
-              item-text="text"
-              item-value="value"
-              solo
-            ></v-select
-          ></v-col>
-        </v-row>
         <v-simple-table>
           <template v-slot:default>
             <thead>
@@ -256,7 +172,7 @@ export default {
     },
     getPatient() {
       axios
-        .get("http://localhost:3000/Patient/")
+        .get("https://protected-ravine-72171.herokuapp.com/Patient/")
         .then((response) => {
           let data = {};
           this.patient = [];
@@ -281,7 +197,7 @@ export default {
     },
     deletePatient(id) {
       axios
-        .delete("http://localhost:3000/User/" + id)
+        .delete("https://protected-ravine-72171.herokuapp.com/User/" + id)
         .then((response) => {
           this.dialog = false;
           console.log(response);
@@ -292,16 +208,22 @@ export default {
         });
     },
     updatePatient() {
-      console.log("http://localhost:3000/Patient/" + this.patientId);
+      console.log(
+        "https://protected-ravine-72171.herokuapp.com/Patient/" + this.patientId
+      );
       axios
-        .patch("http://localhost:3000/Patient/" + this.patientId, {
-          username: this.$store.getters.patientData.username,
-          email: this.$store.getters.patientData.email,
-          fullname: this.$store.getters.patientData.fullname,
-          phonenumber: this.$store.getters.patientData.phonenumber,
-          age: this.$store.getters.patientData.age,
-          password: this.$store.getters.patientData.password,
-        })
+        .patch(
+          "https://protected-ravine-72171.herokuapp.com/Patient/" +
+            this.patientId,
+          {
+            username: this.$store.getters.patientData.username,
+            email: this.$store.getters.patientData.email,
+            fullname: this.$store.getters.patientData.fullname,
+            phonenumber: this.$store.getters.patientData.phonenumber,
+            age: this.$store.getters.patientData.age,
+            password: this.$store.getters.patientData.password,
+          }
+        )
         .then((response) => {
           this.dialog = false;
 

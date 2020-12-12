@@ -244,7 +244,7 @@ export default {
     },
     getDoctor() {
       axios
-        .get("http://localhost:3000/Doctor/")
+        .get("https://protected-ravine-72171.herokuapp.com/Doctor/")
         .then((response) => {
           let data = {};
           this.doctor = [];
@@ -257,6 +257,8 @@ export default {
                 fullname: response.data[x].User.fullname,
                 email: response.data[x].User.email,
                 speciality: response.data[x].speciality,
+                phonenumber: response.data[x].User.phonenumber,
+                age: response.data[x].User.age,
               };
               this.doctor.push(data);
             }
@@ -268,7 +270,7 @@ export default {
     },
     deleteDoctor(id) {
       axios
-        .delete("http://localhost:3000/User/" + id)
+        .delete("https://protected-ravine-72171.herokuapp.com/User/" + id)
         .then((response) => {
           console.log(response);
           this.getDoctor();
@@ -278,18 +280,24 @@ export default {
         });
     },
     updateDoctor() {
-      console.log("http://localhost:3000/Doctor/" + this.doctorId);
+      console.log(
+        "https://protected-ravine-72171.herokuapp.com/Doctor/" + this.doctorId
+      );
 
       axios
-        .patch("http://localhost:3000/Doctor/" + this.doctorId, {
-          speciality: this.$store.getters.doctorData.speciality,
-          username: this.$store.getters.doctorData.username,
-          email: this.$store.getters.doctorData.email,
-          fullname: this.$store.getters.doctorData.fullname,
-          phonenumber: this.$store.getters.doctorData.phonenumber,
-          age: this.$store.getters.doctorData.age,
-          password: this.$store.getters.doctorData.password,
-        })
+        .patch(
+          "https://protected-ravine-72171.herokuapp.com/Doctor/" +
+            this.doctorId,
+          {
+            speciality: this.$store.getters.doctorData.speciality,
+            username: this.$store.getters.doctorData.username,
+            email: this.$store.getters.doctorData.email,
+            fullname: this.$store.getters.doctorData.fullname,
+            phonenumber: this.$store.getters.doctorData.phonenumber,
+            age: this.$store.getters.doctorData.age,
+            password: this.$store.getters.doctorData.password,
+          }
+        )
         .then((response) => {
           this.dialog = false;
           console.log(response);

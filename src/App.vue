@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app>
-      <v-app-bar app color="green" dark>
+      <v-app-bar app color="blue" dark>
         <div class="d-flex align-center">
           <v-img
             alt="Vuetify Logo"
