@@ -109,7 +109,7 @@ export default new Vuex.Store({
     actions: {
         login(context, Credential) {
             console.log("sasasas")
-            Axios.post("http://localhost:3000/login", {
+            Axios.post("https://protected-ravine-72171.herokuapp.com/login", {
                     email: Credential.email,
                     password: Credential.password
                 })
@@ -122,7 +122,8 @@ export default new Vuex.Store({
                     context.commit('loggedStatus', true)
 
                     localStorage.setItem('access_token', token)
-                    if (role == "Admin") {                    context.commit('retrieveToken', token)
+                    if (role == "Admin") {
+                        context.commit('retrieveToken', token)
 
                         router.push('/admin')
 
@@ -150,7 +151,7 @@ export default new Vuex.Store({
         },
         register(context, Credential) {
             Axios
-                .post("http://localhost:3000/Register", {
+                .post("https://protected-ravine-72171.herokuapp.com/Register", {
                     username: Credential.username,
                     email: Credential.email,
                     phonenumber: Credential.phonenumber,
@@ -160,7 +161,7 @@ export default new Vuex.Store({
                 })
                 .then(response => {
                     const token = response.data.token
-                    const user = response.data.user
+                    const user = response.data
                     console.log(response)
                     localStorage.setItem("userid", user.id)
                     localStorage.setItem('access_token', token)
