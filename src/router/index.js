@@ -7,7 +7,7 @@ import makeAppointment from "../views/SelectDoctor.vue"
 import selectDoctor from "../views/SelectDoctor.vue"
 import AppointmentHistory from "../views/AppointmentHistory.vue"
 import AppointmentStatus from "../views/AppointmentStatus.vue"
-import admin from "../views/admin/Home.vue"
+// import admin from "../views/admin/Home.vue"
 import Staff from "../views/doctor/Home.vue"
 import Profile from "../views/UserProfile.vue"
 
@@ -88,14 +88,14 @@ const routes = [{
 
         }
     },
-    {
-        path: '/admin',
-        component: admin,
-        meta: {
-            title: 'Admin Dashboard',
+    // {
+    //     path: '/admin',
+    //     component: admin,
+    //     meta: {
+    //         title: 'Admin Dashboard',
 
-        }
-    },
+    //     }
+    // },
 
     {
         path: '/staff',
